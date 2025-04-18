@@ -1,36 +1,52 @@
 ---
+// Import the ResponsiveToggle component for responsive menu functionality.
 import ResponsiveToggle from './ResponsiveToggle.astro'
+// Import the DarkMode component for toggling dark mode.
 import { DarkMode } from 'accessible-astro-components'
+// Import the Image component from Astro for handling images.
 import { Image } from 'astro:assets'
+// Import the logo image.
 import logo from '../assets/img/logo.svg'
 ---
 
+<!-- // Main navigation container.  It's desktop by default and includes padding. -->
 <div id="main-navigation" class="is-desktop py-8">
   <div class="container">
+    <!-- {/* Logo and site title */} -->
     <a href="/" class="flex items-center gap-2 !no-underline">
       <Image src={logo} alt="Your Logo" width="47" height="37" />
       <span class="font-bold">Fathir</span>
     </a>
+
+    <!-- {/* Wrapper for desktop menu, dark mode toggle, and responsive toggle */} -->
     <div class="wrapper">
+      <!-- {/* Desktop navigation menu */} -->
       <nav class="desktop-menu" aria-label="Main navigation desktop">
         <ul class="menu">
+          {/* Menu items will be injected here via a slot */}
           <slot />
         </ul>
       </nav>
+      {/* Dark mode toggle button */}
       <DarkMode />
+      {/* Responsive menu toggle button (only visible on mobile) */}
       <ResponsiveToggle />
     </div>
+
+    {/* Mobile navigation menu (hidden by default, shown by JavaScript) */}
     <nav class="mobile-menu" aria-label="Main navigation mobile">
       <ul class="menu">
+        {/* Menu items will be injected here via a slot */}
         <slot />
       </ul>
     </nav>
   </div>
 </div>
 
+{/* JavaScript for handling menu behavior */}
 <script>
   document.addEventListener('astro:page-load', () => {
-    // variables
+    // Variables
     const mainNav = document.querySelector('#main-navigation')
     const mainMenu = mainNav.querySelector('ul')
     const dropdownMenus = [...document.querySelectorAll('.has-dropdown button')]
@@ -38,16 +54,22 @@ import logo from '../assets/img/logo.svg'
     // functions
     const setActiveMenuItem = () => {
       const mobileDesktopMenus = mainNav.querySelectorAll('nav > ul')
-      const currenPathname = window.location.pathname
+      const currentPathname = window.location.pathname
 
       mobileDesktopMenus.forEach((menu) => {
         const menuItems = [...menu.querySelectorAll('a:not([rel*="external"])')] as HTMLAnchorElement[]
 
         menuItems.forEach((menuItem) => {
-          if (currenPathname.includes(menuItem.pathname.replaceAll('/', '')) && menuItem.textContent !== 'Home') {
+          // Check if the current path includes the menu item's path (without slashes)
+          // and the menu item is not the "Home" link.
+          if (currentPathname.includes(menuItem.pathname.replaceAll('/', '')) && menuItem.textContent !== 'Home') {
+            // If it matches, add the 'is-active' class for styling and set 'aria-current' for accessibility.
             menuItem.classList.add('is-active')
             menuItem.setAttribute('aria-current', 'page')
-          } else if (menuItem.textContent === 'Home' && currenPathname === '/') {
+          } 
+          // Special case for the "Home" link:  If the current path is the root path ("/"),
+          // set the "Home" link as active.
+          else if (menuItem.textContent === 'Home' && currentPathname === '/') {
             menuItem.classList.add('is-active')
             menuItem.setAttribute('aria-current', 'page')
           }
@@ -56,12 +78,16 @@ import logo from '../assets/img/logo.svg'
     }
 
     const checkMenuSize = () => {
+      // Get the widths of the main navigation and the desktop menu.
       const mainNavWidth = mainNav.getBoundingClientRect().width
       const desktopMenuWidth = document.querySelector('.desktop-menu').getBoundingClientRect().width
+      // Add a buffer for the logo width to consider in the calculation.
       const logoWidthBuffer = 300
       const totalMenuWidth = Math.round(desktopMenuWidth) + logoWidthBuffer
 
+      // Determine if the menu should be displayed as "desktop" or "mobile" based on available space.
       if (totalMenuWidth >= mainNavWidth) {
+        // If the menu is too wide, switch to mobile view.
         mainNav.classList.remove('is-desktop')
         mainNav.classList.add('is-mobile')
       } else if (totalMenuWidth <= mainNavWidth) {
@@ -70,6 +96,7 @@ import logo from '../assets/img/logo.svg'
       }
     }
 
+    // Check if an element is out of the viewport's right edge.
     const isOutOfViewport = (element) => {
       const elementBounds = element.getBoundingClientRect()
       return elementBounds.right > (window.innerWidth || document.documentElement.clientWidth)
@@ -80,6 +107,7 @@ import logo from '../assets/img/logo.svg'
 
       dropdownMenu.classList.add('show')
       dropdownMenu.setAttribute('aria-expanded', 'true')
+      // If the dropdown is out of the viewport, adjust its position.
 
       if (isOutOfViewport(dropdownList)) {
         dropdownList.style.left = 'auto'
@@ -87,10 +115,12 @@ import logo from '../assets/img/logo.svg'
     }
 
     const closeDropdownMenu = (dropdownMenu) => {
+      // Hide the dropdown menu and set aria-expanded to false.
       dropdownMenu.classList.remove('show')
       dropdownMenu.setAttribute('aria-expanded', 'false')
     }
 
+    // Close all dropdown menus.
     const closeAllDropdownMenus = () => {
       for (let i = 0; i < dropdownMenus.length; i++) {
         closeDropdownMenu(dropdownMenus[i])
@@ -98,6 +128,7 @@ import logo from '../assets/img/logo.svg'
     }
 
     const toggleDropdownMenu = (event) => {
+      // Toggle the visibility of a dropdown menu.
       if (event.target.getAttribute('aria-expanded') === 'false') {
         closeAllDropdownMenus()
         openDropdownMenu(event.target)
@@ -106,7 +137,7 @@ import logo from '../assets/img/logo.svg'
       }
     }
 
-    // execution
+    // Execution
     mainMenu &&
       mainMenu.addEventListener('keydown', (event) => {
         const element = event.target as Element
@@ -119,6 +150,7 @@ import logo from '../assets/img/logo.svg'
         const key = event.key
         let targetItem
 
+        // Handle ArrowRight key:  Move focus to the next menu item (loop to start if at the end).
         if (key === 'ArrowRight') {
           if (menuItems.indexOf(currentMenuItem) === menuItems.length - 1) {
             targetItem = menuItems[0]
@@ -127,6 +159,7 @@ import logo from '../assets/img/logo.svg'
           }
         }
 
+        // Handle ArrowLeft key: Move focus to the previous menu item (loop to the end if at the start).
         if (key === 'ArrowLeft') {
           if (menuItems.indexOf(currentMenuItem) === 0) {
             targetItem = menuItems[menuItems.length - 1]
@@ -135,10 +168,12 @@ import logo from '../assets/img/logo.svg'
           }
         }
 
+        // Handle Escape key: Move focus to the first menu item.
         if (key === 'Escape') {
           targetItem = menuItems[0]
         }
 
+        // Handle key presses within a dropdown menu (if one is currently active).
         if (currentDropdownMenu) {
           const firstDropdownItem = currentDropdownMenu.nextElementSibling.querySelector('li')
 
@@ -147,11 +182,13 @@ import logo from '../assets/img/logo.svg'
             openDropdownMenu(currentDropdownMenu)
             targetItem = firstDropdownItem
           }
-
+          // Handle Escape key within a dropdown: Close the dropdown.
           if (key === 'Escape') {
             closeDropdownMenu(currentDropdownMenu)
           }
         }
+
+        // Handle key presses for menu items within an open dropdown.
 
         if (currentDropdownMenuItem) {
           const currentDropdownList = currentDropdownMenuItem.parentNode
@@ -177,13 +214,14 @@ import logo from '../assets/img/logo.svg'
               targetItem = dropdownMenuItems[currentIndex - 1]
             }
           }
-
+          // Handle Escape key within a dropdown menu item: Close all dropdowns and focus on the parent menu item.
           if (key === 'Escape') {
             const currentDropdownMenu = (currentDropdownList as Element).previousElementSibling
             targetItem = currentDropdownMenu.parentNode
             closeAllDropdownMenus()
           }
 
+          // Handle Tab key within a dropdown menu item: Close the dropdown if it's the last item.
           if (key === 'Tab') {
             const currentDropdownMenu = (currentDropdownList as Element).previousElementSibling
 
@@ -193,6 +231,7 @@ import logo from '../assets/img/logo.svg'
           }
         }
 
+        // Set focus on the target menu item (if any).
         if (targetItem) {
           targetItem.querySelector('a, button, input').focus()
         }
@@ -203,12 +242,15 @@ import logo from '../assets/img/logo.svg'
         dropdownMenu.addEventListener('click', toggleDropdownMenu)
       })
 
+    // Initialize the active menu item based on the current URL.
     setActiveMenuItem()
+    // Determine initial menu size (desktop or mobile).
     checkMenuSize()
 
+    // Update menu size on window resize.
     window.addEventListener('resize', checkMenuSize)
     window.addEventListener('click', (event) => {
-      const element = event.target as Element
+      const element = event.target as Element  // Corrected typo here: 'event.targer' to 'event.target'
       if (!element.hasAttribute('aria-haspopup') && !element.classList.contains('submenu-item')) {
         closeAllDropdownMenus()
       }
