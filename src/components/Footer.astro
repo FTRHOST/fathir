@@ -1,18 +1,62 @@
 ---
-import CallToAction from './CallToAction.astro'
-
-const currentYear = new Date().getFullYear()
+// import { Icon } from 'astro-icon';
 ---
 
-<footer>
-  <CallToAction />
-  <section class="py-8">
-    <div class="container">
-      <p>
-        &copy; {currentYear} - Starter Theme for <a href="https://astro.build/">Astro</a>. Made with ❤️ by <a
-          href="https://github.com/markteekman">Mark Teekman</a
-        >.
+<footer class="bg-[#1e1e1e] text-white py-12">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="col-span-1">
+        <a href="/" class="text-xl font-bold">
+          <img src="/logo.svg" alt="Firebase Studio" class="w-32 mb-6" />
+        </a>
+        <p class="text-gray-400">
+          Build better products across web and mobile
+        </p>
+      </div>
+      <div class="col-span-1">
+        <h4 class="font-bold mb-4">Product</h4>
+        <ul>
+          <li class="mb-2"><a href="#" class="hover:text-gray-300">Web</a></li>
+          <li class="mb-2"><a href="#" class="hover:text-gray-300">Mobile</a></li>
+          <li class="mb-2"><a href="#" class="hover:text-gray-300">CLI</a></li>
+          <li class="mb-2"><a href="#" class="hover:text-gray-300">Pricing</a></li>
+          <li class="mb-2"><a href="#" class="hover:text-gray-300">Updates</a></li>
+        </ul>
+      </div>
+      <div class="col-span-1">
+        <h4 class="font-bold mb-4">Resources</h4>
+        <ul>
+          <li class="mb-2"><a href="#" class="hover:text-gray-300">Docs</a></li>
+          <li class="mb-2"><a href="#" class="hover:text-gray-300">Examples</a></li>
+          <li class="mb-2"><a href="#" class="hover:text-gray-300">API Reference</a></li>
+          <li class="mb-2"><a href="#" class="hover:text-gray-300">Playground</a></li>
+        </ul>
+      <!-- </div>
+      <div class="col-span-1">
+        <h4 class="font-bold mb-4">Social</h4>
+        <ul>
+          <li class="mb-2">
+            <a href="#" class="hover:text-gray-300 flex items-center gap-2"
+              ><Icon name="mdi:github" class="h-5 w-5" /> GitHub</a
+            >
+          </li>
+          <li class="mb-2">
+            <a href="#" class="hover:text-gray-300 flex items-center gap-2"
+              ><Icon name="mdi:twitter" class="h-5 w-5" /> Twitter</a
+            >
+          </li>
+          <li class="mb-2">
+            <a href="#" class="hover:text-gray-300 flex items-center gap-2"
+              ><Icon name="mdi:discord" class="h-5 w-5" /> Discord</a
+            >
+          </li> -->
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-gray-400 text-sm">
+        © {new Date().getFullYear()} Firebase Studio. All rights reserved.
       </p>
     </div>
-  </section>
+  </div>
 </footer>

@@ -1,31 +1,21 @@
 ---
-import { Icon } from 'astro-icon/components'
 
-const { src = '/astronaut-hero-img.webp' } = Astro.props
 ---
 
-<section class="hero my-24">
-  <div class="container">
-    <div class="grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
-      <div class="flex flex-col items-center gap-8 md:items-start">
-        <h1 class="text-center text-6xl md:text-left lg:text-8xl">
-          <slot><span class="text-gradient">Hi there!</span> I'm Fathir</slot>
+<section class="my-4 lg:my-16">  <!-- Section with padding top and bottom (responsive) -->
+  <div class="container">  <!-- Container to center content -->
+      <div class="relative flex flex-1 flex-col justify-around rounded-lg pb-10 pt-20 lg:rounded-2xl">  <!-- Flex container with column direction, center alignment, responsive start alignment -->
+        <h1 class="text-center font-display text-6xl font-extrabold sm:text-7xl md:text-8xl lg:text-8xl">  <!-- Heading 1 with center alignment, large text size, responsive alignment and size -->
+          <slot><span class="text-gradient">Hi there,</span> I'm Fathir!</slot>  <!-- Slot for content with gradient text -->
         </h1>
-        <div class="flex flex-col gap-3 min-[500px]:flex-row">
-          <a class="button has-icon" href="https://github.com/incluud/accessible-astro-starter">
-            <Icon name="ion:star-outline" />
-            Star on GitHub
-          </a>
-          <a class="button has-icon color-secondary" href="https://accessible-astro.incluud.dev/">
-            <Icon name="ion:bookmark-outline" />
-            Read the Docs
-          </a>
+        <div class="flex flex-col items-center gap-5 text-center lg:gap-10">
+          <p class="mt-8 max-w-3xl font-mono lg:text-lg">  <!-- Paragraph with large text size and center alignment -->
+            Hai saya Muhammad Fathir Al Faruq, saya merupakan siswa dari MA NU 01 Banyuputih. Hobi saya adalah mempelajari sebuah kode pemrograman JS yang mengenai AI atau Bot.
+          </p>
         </div>
-      </div>
-      <img class="hidden lg:block" src={src} alt="" decoding="async" />
-    </div>
-  </div>
-</section>
+      </div>  <!-- End of flex container -->
+  </div>  <!-- End of container -->
+</section>  <!-- End of section -->
 
 <style lang="scss">
   .text-gradient {

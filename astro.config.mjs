@@ -10,7 +10,9 @@ export default defineConfig({
   site: 'https://accessible-astro.netlify.app',
   integrations: [
     mdx(),
-    icon(),
+    icon({
+      iconDir: 'src/icons',
+    }),
     tailwind({
       applyBaseStyles: false,
     }),
