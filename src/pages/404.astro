@@ -1,15 +1,19 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
+// import FuzzyText from '../components/FuzzyText/FuzzyText';
 ---
 
 <DefaultLayout title="404">
-  <section class="py-12">
-    <div class="container">
-      <h1>404</h1>
-    </div>
-    <div class="space-content container">
-      <p class="text-2xl">This page does not exist. Don't worry though, we got you.</p>
-      <a class="button" href="/">Let's get you home Astronout 🚀</a>
+  <section class="py-48 lg:py-48">
+    <div class="container flex flex-col items-center justify-center gap-8 md:gap-12 py-64 mx-auto">
+  <!-- <FuzzyText 
+  baseIntensity={0.2} 
+  hoverIntensity={0.5} 
+  enableHover={true}
+  client:load
+  >Fathir</FuzzyText> -->
+     <h1 class="text-4xl md:text-5xl">Page not found</h1>
+     <a href="/" class="button button-primary rounded-pill">Go back to home</a>
     </div>
   </section>
 </DefaultLayout>
