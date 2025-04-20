@@ -6,7 +6,7 @@ import { DarkMode } from 'accessible-astro-components'
 // Import the Image component from Astro for handling images.
 import { Image } from 'astro:assets'
 // Import the logo image.
-import logo from '../assets/img/logo.svg'
+import logo from '../assets/img/ppgm.jpg'
 ---
 
 <!-- // Main navigation container.  It's desktop by default and includes padding. -->
@@ -14,7 +14,7 @@ import logo from '../assets/img/logo.svg'
   <div class="container">
     <!-- {/* Logo and site title */} -->
     <a href="/" class="flex items-center gap-2 !no-underline">
-      <Image src={logo} alt="Your Logo" width="47" height="37" />
+      <Image src={logo} alt="Your Logo" width="37" height="27" class="circular-image"/>
       <span class="font-bold">Fathir</span>
     </a>
 
@@ -262,6 +262,10 @@ import logo from '../assets/img/logo.svg'
   @use '../assets/scss/base/breakpoint' as *;
   @use '../assets/scss/base/outline' as *;
 
+  .circular-image {
+  border-radius: 50%;
+}
+
   #main-navigation {
     > .container {
       display: flex;
@@ -332,8 +336,8 @@ import logo from '../assets/img/logo.svg'
         .is-active,
         .has-dropdown > button:hover,
         .has-dropdown > button:focus {
-          text-decoration: underline;
-          text-decoration-style: wavy;
+          // text-decoration: underline;
+          // text-decoration-style: line;
           text-decoration-thickness: 1px;
           text-underline-offset: 7px;
         }

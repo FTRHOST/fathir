@@ -27,7 +27,7 @@ const {
   </head>
   <body>
     <Header />
-    <main id="main-content" transition:animate="fade">
+    <main id="main-content" transition:animate="fade" class="md:relative min-h-screen flex flex-col justify-between overflow-x-clip overflow-y-clip md:grow">
       <slot />
     </main>
     <Footer />
@@ -111,7 +111,7 @@ const {
       }
 
       * {
-        border: 1px solid red;
+        border: 0px solid red;
         }
     </style>
   </body>

@@ -2,14 +2,14 @@
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import Hero from '../components/Hero.astro'
 import Feature from '../components/Feature.astro'
-import Counter from '../components/Counter.astro'
+// import Counter from '../components/Counter.astro'
 // import ContentMedia from '../components/ContentMedia.astro'
 import { Accordion, AccordionItem } from 'accessible-astro-components'
 ---
 
 <DefaultLayout title="Home">
   <Hero />
-  <section class="my-16">
+  <section class="py-12 lg:py-48">
     <div class="container">
       <h2 class="mb-16 text-6xl text-center">My Skils</h2>
       <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
@@ -42,10 +42,10 @@ import { Accordion, AccordionItem } from 'accessible-astro-components'
       reaching WCAG AA compliance.
     </p>
   </ContentMedia> -->
-  <section class="my-32">
-    <div class="container grid grid-cols-1 gap-12 md:grid-cols-2">
+  <section class="py-12 lg:py-24">
+    <div class="container grid grid-cols-1 gap-12 md:grid-cols-1 lg:grid-cols-2">
       <div class="flex flex-col items-start gap-4">
-        <h2 class="text-6xl">FAQ</h2>
+        <h2 class="text-6xl md:text-center">FAQ</h2>
         <p class="text-2xl">
           This section demonstrates how to effectively use the Accordion component to organize and display frequently
           asked questions in an accessible and user-friendly way.
@@ -100,7 +100,7 @@ import { Accordion, AccordionItem } from 'accessible-astro-components'
       </div>
     </div>
   </section>
-  <section class="mb-32 mt-64">
+  <!-- <section class="mb-32 mt-64">
     <div class="container">
       <h2 class="mb-16 text-6xl">Counters</h2>
       <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-4">
@@ -110,5 +110,5 @@ import { Accordion, AccordionItem } from 'accessible-astro-components'
         <Counter count="18+" title="Months" sub="Since launch" />
       </div>
     </div>
-  </section>
+  </section> -->
 </DefaultLayout>
