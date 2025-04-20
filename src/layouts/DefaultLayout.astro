@@ -4,6 +4,8 @@ import '../assets/scss/globals.scss'
 import SiteMeta from '../components/SiteMeta.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+// import FadeContent from '../components/FadeContent/FadeContent'
+// import AnimatedContent from '../components/AnimatedContent/AnimatedContent'
 
 const {
   title = 'Astro',
@@ -26,11 +28,26 @@ const {
     <SiteMeta title={title} description={description.substring(0, 100)} url={url} image={image} author={author} />
   </head>
   <body>
+    <!-- <FadeContent blur={true} duration={100} easing="ease-out" initialOpacity={0} client:load> -->
+      <!-- <AnimatedContent
+      distance={150}
+      direction="horizontal"
+      reverse={false}
+      config={{ tension: 80, friction: 20 }}
+      initialOpacity={0.2}
+      animateOpacity
+      scale={1.1}
+      threshold={0.2}
+      client:load
+    > -->
     <Header />
     <main id="main-content" transition:animate="fade" class="md:relative min-h-screen flex flex-col justify-between overflow-x-clip overflow-y-clip md:grow">
       <slot />
     </main>
     <Footer />
+  <!-- </FadeContent> -->
+  <!-- </AnimatedContent> -->
+  </body>
     <style lang="scss" is:global>
       // theme settings
       :root {
