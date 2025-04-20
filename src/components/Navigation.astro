@@ -23,27 +23,27 @@ import logo from '../assets/img/logo.svg'
       <!-- {/* Desktop navigation menu */} -->
       <nav class="desktop-menu" aria-label="Main navigation desktop">
         <ul class="menu">
-          {/* Menu items will be injected here via a slot */}
+          <!-- {/* Menu items will be injected here via a slot */} -->
           <slot />
         </ul>
       </nav>
-      {/* Dark mode toggle button */}
+      <!-- {/* Dark mode toggle button */} -->
       <DarkMode />
-      {/* Responsive menu toggle button (only visible on mobile) */}
+      <!-- {/* Responsive menu toggle button (only visible on mobile) */} -->
       <ResponsiveToggle />
     </div>
 
-    {/* Mobile navigation menu (hidden by default, shown by JavaScript) */}
+    <!-- {/* Mobile navigation menu (hidden by default, shown by JavaScript) */} -->
     <nav class="mobile-menu" aria-label="Main navigation mobile">
       <ul class="menu">
-        {/* Menu items will be injected here via a slot */}
+        <!-- {/* Menu items will be injected here via a slot */} -->
         <slot />
       </ul>
     </nav>
   </div>
 </div>
 
-{/* JavaScript for handling menu behavior */}
+<!-- {/* JavaScript for handling menu behavior */} -->
 <script>
   document.addEventListener('astro:page-load', () => {
     // Variables
@@ -270,13 +270,14 @@ import logo from '../assets/img/logo.svg'
     }
 
     &.is-desktop {
-      .desktop-menu {
-        position: static;
-        visibility: visible;
-      }
 
       .mobile-menu {
         display: none;
+      }
+      
+      .desktop-menu {
+        position: static;
+        visibility: visible;
       }
 
       .darkmode-toggle {
