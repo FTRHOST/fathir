@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components'
 import { Image } from 'astro:assets'
-import logo from '../assets/img/logo.svg'
+import logo from '../assets/img/logo.jpg'
 ---
 <section class="container py-24 md:py-48">
   <footer class="w-[calc(100%-32px)] md:w-[calc(100%-80px)] text-sm relative text-gray-500 bg-black p-6 md:p-12 rounded-3xl m-4 md:m-10 max-w-[1600px] xl:mx-auto">
@@ -9,7 +9,7 @@ import logo from '../assets/img/logo.svg'
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div class="col-span-1">
           <a href="/" class="text-xl font-bold">
-            <Image src={logo} alt="Fathir"/>
+            <Image src={logo} alt="Fathir" width="37" height="27" class="circular-image"/> Fathir Al Faruq </Image>
           </a>
           <p class="text-gray-400">
             Build better products across web and mobile
