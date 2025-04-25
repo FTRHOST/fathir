@@ -8,7 +8,7 @@ export async function getStaticPaths() {
 
   return data.map((post) => {
     return {
-      params: { post: post.title.replaceAll(' ', '-').toLowerCase() },
+      params: { post: post.id },
       props: { post },
     }
   })
