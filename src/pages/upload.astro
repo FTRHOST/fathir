@@ -1,0 +1,55 @@
+---
+
+---
+<ng-template #emptyblog>
+    <div class="spinner-container">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>
+<ng-container *ngIf="blogPost && blogPost.length>0; else emptyblog">
+    <div *ngFor="let post of blogPost">
+        <mat-card class="blog-card mat-elevation-z2">
+            <mat-card-content>
+                <a class="blog-title" [routerLink]="['/blog/', post.postId, post.title | slug]">
+                    <h2>Hahay </h2>
+                </a>
+            </mat-card-content>
+            <mat-card-content>
+                <div [innerHTML]="post.content | excerpt"></div>
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-actions align="end">
+                <ng-container>
+                    <button mat-raised-button color="accent" [routerLink]="['/editpost',post.postId]">Edit</button>
+                    <button mat-raised-button color="warn" (click)="delete(post.postId)">Delete</button>
+                </ng-container>
+                <span class="spacer"></span>
+                <button mat-raised-button color="primary" [routerLink]="['/blog/', post.postId, post.title | slug]">Read
+                    More</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</ng-container>
+
+<style lang="is:scss">
+.blog-card {
+    margin-bottom: 15px;
+  }
+  
+  .blog-title {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: indianred;
+  }
+  .spinner-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }
+</style>
