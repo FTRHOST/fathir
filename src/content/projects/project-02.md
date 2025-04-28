@@ -1,10 +1,9 @@
 ---
-img: 'src/assets/img/logo.jpg'
 title: 'My First Blog Post'
 pubDate: 2022-07-01
 description: 'This is the first post of my new Astro blog.'
 author: 'Astro Learner'
-image:
+img:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
 tags: ["astro", "blogging", "learning in public"]
@@ -14,6 +13,7 @@ tags: ["astro", "blogging", "learning in public"]
 Published on: 2022-07-01
 
 Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.
+![accessible-astro-starter](https://github.com/user-attachments/assets/f3538452-5d57-4118-b713-4631dd51bd84)
 
 ## What I've accomplished
 

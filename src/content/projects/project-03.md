@@ -1,28 +1,28 @@
 ---
-img: './src/assets/img/logo.jpg'
-title: 'My First Blog Post'
+layout: ../layouts/MarkdownLayout.astro
+title: Markdown Page
 pubDate: 2022-07-01
 description: 'This is the first post of my new Astro blog.'
-author: 'Astro Learner'
+author: 'patir'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
 tags: ["astro", "blogging", "learning in public"]
+sampul: 'https://docs.astro.build/assets/rose.webp'
 ---
-# My First Blog Post
 
-Published on: 2022-07-01
+# Markdown Page
 
-Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae veniam repellat deleniti obcaecati facilis non, praesentium aperiam laudantium excepturi assumenda doloremque animi quis aliquam eligendi quia nemo asperiores et eaque, sunt voluptatibus, saepe exercitationem id. Quis sequi maxime fugiat nam reprehenderit nesciunt quaerat obcaecati, ipsa dignissimos voluptatum voluptatem, optio quidem quos repudiandae dolorem voluptatibus fuga officia odio nemo recusandae voluptas.
 
-## What I've accomplished
+```js
+console.log('Hello Accessible World!')
+```
 
-1. **Installing Astro**: First, I created a new Astro project and set up my online accounts.
+```bash
+sudo apt update -y
+```
 
-2. **Making Pages**: I then learned how to make pages by creating new `.astro` files and placing them in the `src/pages/` folder.
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae veniam repellat deleniti obcaecati facilis non, praesentium aperiam laudantium excepturi assumenda doloremque animi quis aliquam eligendi quia nemo asperiores et eaque, sunt voluptatibus, saepe exercitationem id. Quis sequi maxime fugiat nam reprehenderit nesciunt quaerat obcaecati, ipsa dignissimos voluptatum voluptatem, optio quidem quos repudiandae dolorem voluptatibus fuga officia odio nemo recusandae voluptas.
 
-3. **Making Blog Posts**: This is my first blog post! I now have Astro pages and Markdown posts!
-
-## What's next
-
-I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.
+[Get this theme on GitHub](https://github.com/markteekman/accessible-astro-starter)
