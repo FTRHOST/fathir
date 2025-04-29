@@ -2,6 +2,18 @@
 import Navigation from '../components/Navigation.astro'
 import { SkipLink } from 'accessible-astro-components'
 import { Icon } from 'astro-icon/components'
+import { defaultSiteConfig } from '../config/site'
+
+// Get current config
+const configPath = 'src/config/site.json'
+let currentConfig = defaultSiteConfig
+
+try {
+  const config = await import('../config/site.json')
+  currentConfig = { ...defaultSiteConfig, ...config.default }
+} catch (error) {
+  // Use default config if file doesn't exist
+}
 ---
 
 <header>
@@ -36,8 +48,13 @@ import { Icon } from 'astro-icon/components'
       </a>
     </li>
     <li class="menu-item type-icon">
-      <a href="https://github.com/ftrhost" title="Go to the GitHub page">
+      <a href={currentConfig.github} title="Go to the GitHub page">
         <Icon name="ion:logo-github" />
+      </a>
+    </li>
+    <li class="menu-item type-icon">
+      <a href={currentConfig.linkedin} title="Go to the LinkedIn page">
+        <Icon name="mdi:linkedin" />
       </a>
     </li>
   </Navigation>

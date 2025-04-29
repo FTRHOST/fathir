@@ -4,6 +4,9 @@ title: Markdown Page
 pubDate: 2022-07-01
 description: 'This is the first post of my new Astro blog.'
 author: 'patir'
+img:
+  url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aspect_ratio_-_16x9.svg/2560px-Aspect_ratio_-_16x9.svg.png'
+  alt: 'Contoh gambar sampul project portofolio'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'

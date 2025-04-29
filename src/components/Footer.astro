@@ -1,7 +1,19 @@
 ---
 import { Icon } from 'astro-icon/components'
 import { Image } from 'astro:assets'
+import { defaultSiteConfig } from '../config/site'
 import logo from '../assets/img/logo.jpg'
+
+// Get current config
+const configPath = 'src/config/site.json'
+let currentConfig = defaultSiteConfig
+
+try {
+  const config = await import('../config/site.json')
+  currentConfig = { ...defaultSiteConfig, ...config.default }
+} catch (error) {
+  // Use default config if file doesn't exist
+}
 ---
 <section class="container py-24 md:py-48">
   <footer class="w-[calc(100%-32px)] md:w-[calc(100%-80px)] text-sm relative text-gray-500 bg-black p-6 md:p-12 rounded-3xl m-4 md:m-10 max-w-[1600px] xl:mx-auto">
@@ -9,11 +21,11 @@ import logo from '../assets/img/logo.jpg'
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div class="col-span-1">
           <a href="/" class="text-xl font-bold">
-            <Image src={logo} alt="Fathir" width="37" height="27" class="circular-image"/>
-            <span class="font-bold">Fathir</span>
+            <Image src={logo} alt={currentConfig.name} width="37" height="27" class="circular-image"/>
+            <span class="font-bold">{currentConfig.name}</span>
           </a>
           <p class="text-gray-400 text-justify">
-            Hai saya Muhammad Fathir Al Faruq, saya merupakan siswa dari MA NU 01 Banyuputih. Hobi saya adalah mempelajari sebuah kode pemrograman JS yang mengenai AI atau Bot.
+            {currentConfig.description}
           </p>
         </div>
         <div class="col-span-1">
@@ -28,7 +40,7 @@ import logo from '../assets/img/logo.jpg'
           <h4 class="font-bold mb-4">Social</h4>
           <ul>
             <li class="mb-2">
-              <a href="https://github.com/ftrhost" class="hover:text-gray-300 flex items-center gap-2"
+              <a href={currentConfig.github} class="hover:text-gray-300 flex items-center gap-2"
                 ><Icon name="mdi:github" class="h-5 w-5" /> GitHub</a
               >
             </li>
@@ -38,22 +50,31 @@ import logo from '../assets/img/logo.jpg'
               >
             </li>
             <li class="mb-2">
-              <a href="https://www.linkedin.com/in/muhammad-fathir-al-faruq-a42124358?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="hover:text-gray-300 flex items-center gap-2"
+              <a href={currentConfig.linkedin} class="hover:text-gray-300 flex items-center gap-2"
                 ><Icon name="mdi:linkedin" class="h-5 w-5" /> Linkedin</a
               >
             </li>
             <li class="mb-2">
-              <a href="https://wa.me/+6285293392559" class="hover:text-gray-300 flex items-center gap-2"
-                ><Icon name="mdi:whatsapp" class="h-5 w-5" /> WhatsApp</a
+              <a href={`mailto:${currentConfig.email}`} class="hover:text-gray-300 flex items-center gap-2"
+                ><Icon name="mdi:email" class="h-5 w-5" /> Email</a
               >
             </li>
           </ul>
         </div>
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4FEKEr1K6NR3ws5DhJQorM?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe 
+          style="border-radius:12px" 
+          src="https://open.spotify.com/embed/playlist/4FEKEr1K6NR3ws5DhJQorM?utm_source=generator" 
+          width="100%" 
+          height="352" 
+          frameborder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy"
+        ></iframe>
       </div>
       <div class="mt-12 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
         <p class="text-gray-400 text-sm">
-          © {new Date().getFullYear()} Fathir Al Faruq. All rights reserved.
+          {currentConfig.footerText}
         </p>
       </div>
     </div>

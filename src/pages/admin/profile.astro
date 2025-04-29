@@ -1,0 +1,323 @@
+---
+import DefaultLayout from '../../layouts/DefaultLayout.astro'
+import { defaultSiteConfig } from '../../config/site'
+import logo from '../../assets/img/logo.jpg'
+
+// Mark as server-side rendered
+export const prerender = false
+
+// Get current config
+const configPath = 'src/config/site.json'
+let currentConfig = defaultSiteConfig
+
+try {
+  const config = await import('../../config/site.json')
+  currentConfig = { ...defaultSiteConfig, ...config.default }
+} catch (error) {
+  // Use default config if file doesn't exist
+}
+---
+
+<DefaultLayout title="Profile Settings">
+  <div class="container mx-auto px-4 py-8">
+    <div class="max-w-2xl mx-auto">
+      <h1 class="text-2xl font-bold mb-8">Profile Settings</h1>
+
+      <div id="errorMessage" class="hidden mb-4 p-4 text-red-700 bg-red-100 rounded-lg"></div>
+      <div id="successMessage" class="hidden mb-4 p-4 text-green-700 bg-green-100 rounded-lg"></div>
+
+      <form id="profileForm" class="space-y-6">
+        <div class="grid grid-cols-1 gap-6">
+          <!-- Basic Information -->
+          <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-lg font-semibold mb-4">Basic Information</h2>
+            <div class="space-y-4">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={currentConfig.name}
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  required
+                />
+              </div>
+
+              <div>
+                <label for="title" class="block text-sm font-medium text-gray-700">Website Title</label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  value={currentConfig.title}
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  required
+                />
+              </div>
+
+              <div>
+                <label for="description" class="block text-sm font-medium text-gray-700">Website Description</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  rows="3"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  required
+                >{currentConfig.description}</textarea>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Logo</label>
+                <div class="flex items-center space-x-4">
+                  <img
+                    id="logoPreview"
+                    src={logo}
+                    alt="Logo Preview"
+                    class="h-16 w-16 object-contain border rounded p-1"
+                  />
+                  <div class="flex-1">
+                    <input
+                      type="file"
+                      id="logoFile"
+                      accept=".png,.jpg,.jpeg,.svg"
+                      class="hidden"
+                    />
+                    <input
+                      type="hidden"
+                      id="logo"
+                      name="logo"
+                      value={currentConfig.logo}
+                    />
+                    <button
+                      type="button"
+                      id="uploadButton"
+                      class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      Upload New Logo
+                    </button>
+                    <p class="mt-1 text-sm text-gray-500">PNG, JPG, or SVG only. Will be displayed at 32x32.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-lg font-semibold mb-4">Contact Information</h2>
+            <div class="space-y-4">
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={currentConfig.email}
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  required
+                />
+              </div>
+
+              <div>
+                <label for="github" class="block text-sm font-medium text-gray-700">GitHub URL</label>
+                <input
+                  type="url"
+                  id="github"
+                  name="github"
+                  value={currentConfig.github}
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+              </div>
+
+              <div>
+                <label for="linkedin" class="block text-sm font-medium text-gray-700">LinkedIn URL</label>
+                <input
+                  type="url"
+                  id="linkedin"
+                  name="linkedin"
+                  value={currentConfig.linkedin}
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Website Content -->
+          <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-lg font-semibold mb-4">Website Content</h2>
+            <div class="space-y-4">
+              <div>
+                <label for="heroTitle" class="block text-sm font-medium text-gray-700">Hero Title</label>
+                <input
+                  type="text"
+                  id="heroTitle"
+                  name="heroTitle"
+                  value={currentConfig.heroTitle}
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  required
+                />
+              </div>
+
+              <div>
+                <label for="heroDescription" class="block text-sm font-medium text-gray-700">Hero Description</label>
+                <textarea
+                  id="heroDescription"
+                  name="heroDescription"
+                  rows="3"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  required
+                >{currentConfig.heroDescription}</textarea>
+              </div>
+
+              <div>
+                <label for="footerText" class="block text-sm font-medium text-gray-700">Footer Text</label>
+                <input
+                  type="text"
+                  id="footerText"
+                  name="footerText"
+                  value={currentConfig.footerText}
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-end space-x-4">
+          <button
+            type="submit"
+            id="submitButton"
+            class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</DefaultLayout>
+
+<script>
+  const form = document.getElementById('profileForm') as HTMLFormElement;
+  const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
+  const errorMessage = document.getElementById('errorMessage') as HTMLDivElement;
+  const successMessage = document.getElementById('successMessage') as HTMLDivElement;
+  const logoFileInput = document.getElementById('logoFile') as HTMLInputElement;
+  const logoInput = document.getElementById('logo') as HTMLInputElement;
+  const logoPreview = document.getElementById('logoPreview') as HTMLImageElement;
+  const uploadButton = document.getElementById('uploadButton') as HTMLButtonElement;
+
+  // Handle logo upload button click
+  if (uploadButton && logoFileInput) {
+    uploadButton.addEventListener('click', () => {
+      logoFileInput.click();
+    });
+  }
+
+  // Handle file selection
+  if (logoFileInput) {
+    logoFileInput.addEventListener('change', async () => {
+      const file = logoFileInput.files?.[0];
+      if (!file) return;
+
+      // Show loading state
+      uploadButton.disabled = true;
+      uploadButton.textContent = 'Uploading...';
+      errorMessage.classList.add('hidden');
+
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // Update preview and hidden input
+          logoPreview.src = data.url;
+          logoInput.value = data.url;
+          successMessage.textContent = 'Logo uploaded successfully!';
+          successMessage.classList.remove('hidden');
+        } else {
+          throw new Error(data.error || 'Failed to upload logo');
+        }
+      } catch (error) {
+        console.error('Upload error:', error);
+        errorMessage.textContent = error instanceof Error ? error.message : 'Failed to upload logo';
+        errorMessage.classList.remove('hidden');
+      } finally {
+        // Reset button state
+        uploadButton.disabled = false;
+        uploadButton.textContent = 'Upload New Logo';
+      }
+    });
+  }
+
+  // Handle form submission
+  if (form && submitButton && errorMessage && successMessage) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Reset messages
+      errorMessage.classList.add('hidden');
+      successMessage.classList.add('hidden');
+      
+      // Disable submit button
+      submitButton.disabled = true;
+      submitButton.textContent = 'Saving Changes...';
+      
+      try {
+        const formData = {
+          name: (document.getElementById('name') as HTMLInputElement).value,
+          title: (document.getElementById('title') as HTMLInputElement).value,
+          description: (document.getElementById('description') as HTMLTextAreaElement).value,
+          logo: logoInput.value,
+          email: (document.getElementById('email') as HTMLInputElement).value,
+          github: (document.getElementById('github') as HTMLInputElement).value,
+          linkedin: (document.getElementById('linkedin') as HTMLInputElement).value,
+          heroTitle: (document.getElementById('heroTitle') as HTMLInputElement).value,
+          heroDescription: (document.getElementById('heroDescription') as HTMLTextAreaElement).value,
+          footerText: (document.getElementById('footerText') as HTMLInputElement).value,
+          author: 'Fathir' // Default author name
+        };
+
+        const response = await fetch('/api/profile', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          successMessage.textContent = data.message || 'Settings saved successfully!';
+          successMessage.classList.remove('hidden');
+          
+          // Reload the page after a short delay to show updated values
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
+        } else {
+          errorMessage.textContent = data.error || 'Failed to save settings. Please try again.';
+          errorMessage.classList.remove('hidden');
+        }
+      } catch (error) {
+        console.error('Save settings error:', error);
+        errorMessage.textContent = 'An error occurred while saving settings. Please try again.';
+        errorMessage.classList.remove('hidden');
+      } finally {
+        // Re-enable submit button
+        submitButton.disabled = false;
+        submitButton.textContent = 'Save Changes';
+      }
+    });
+  }
+</script> 
