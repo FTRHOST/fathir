@@ -54,12 +54,14 @@
     "tailwindcss": "^3.4.15"
   },
   "dependencies": {
+    "@astrojs/node": "^9.2.1",
     "@astrojs/react": "^4.2.4",
+    "@astrojs/vercel": "^8.1.4",
     "@react-spring/web": "^9.7.5",
+    "@types/jsonwebtoken": "^9.0.5",
     "accessible-astro-components": "^4.1.0",
     "framer-motion": "^12.8.2",
     "jsonwebtoken": "^9.0.2",
-    "@types/jsonwebtoken": "^9.0.5",
     "react-markdown": "^8.0.7"
   }
 }
