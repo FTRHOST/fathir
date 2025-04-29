@@ -34,7 +34,7 @@ const { page } = Astro.props
           page.data.map((project) => (
             <li>
               <Card
-                img={project.data.image}
+                img={project.data.img?.url || project.data.img || project.data.image}
                 url={'/portfolio/' + project.id}
                 title={project.data.title}
                 footer={'Author: ' + project.data.author}
