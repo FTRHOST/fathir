@@ -11,7 +11,6 @@ import node from '@astrojs/node';
 export default defineConfig({
   output: 'server',
   adapter: vercel(),
-  compressHTML: true,
   // mengkompresi setiap file html
   site: 'https://accessible-astro.netlify.app',
   integrations: [

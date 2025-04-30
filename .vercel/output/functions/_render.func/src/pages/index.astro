@@ -1,0 +1,92 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import Hero from '../components/Hero.astro'
+import Feature from '../components/Feature.astro'
+// import Counter from '../components/Counter.astro'
+// import ContentMedia from '../components/ContentMedia.astro'
+import { Accordion, AccordionItem } from 'accessible-astro-components'
+import FadeContent from '../components/FadeContent/FadeContent'
+import { defaultSiteConfig } from '../config/site'
+
+// Get current config
+const configPath = 'src/config/site.json'
+let currentConfig = defaultSiteConfig
+---
+
+<DefaultLayout title="Home">
+  <Hero />
+
+  <FadeContent blur={true} duration={250} easing="ease-out" initialOpacity={0} client:load>
+  <section class="py-12 lg:py-48">
+    <div class="container">
+      <h2 class="mb-16 text-6xl text-center">My Skils</h2>
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+        <Feature icon="mdi:gear" title="Linux OS">
+          Saya memiliki ketertarikan dan keahlian pada bidang linux sepertihalnya pada instalasi server website atau aplikasi yang akan digunakan.
+        </Feature>
+        <Feature icon="gemini" title="Gemini AI">
+          Saya pernah mengintegrasikan chatbot custom dengan Gemini API dari Google Generative AI.
+        </Feature>
+        <Feature icon="js" title="Javascript">
+          Saya memiliki ketertarikan pada bahasa pemrograman javascript dan memiliki keinginan untuk terus mengembangkan keahlian pada bahasa pemrograman tersebut.
+        </Feature>
+      </div>
+    </div>
+  </section>
+  <!-- <ContentMedia imgSrc="/accessible-components.webp">
+    <h2>Accessible Components</h2>
+    <p class="text-2xl text-justify">
+      This theme provides plenty of tried and tested Accessible Astro Components. Some are native to this theme and a
+      lot of others are integrated using a <a href="https://github.com/markteekman/accessible-astro-components"
+        >separate package</a
+      >. They'll get you up and running in building an accessible solution for your visitors.
+    </p>
+  </ContentMedia>
+  <ContentMedia imgSrc="/wcag-compliant.webp" reverseImg={true}>
+    <h2>WCAG 2.2 AA Compliant</h2>
+    <p class="text-2xl text-justify">
+      Using semantic HTML, landmarks, skip links, screen reader friendly content, aria-labels, keyboard accessible
+      navigation and components, clear outlines and tab indicators and the right color contrast, you're more certain of
+      reaching WCAG AA compliance.
+    </p>
+  </ContentMedia> -->
+  <section class="py-12 lg:py-24">
+    <div class="container grid grid-cols-1 gap-12 md:grid-cols-1 lg:grid-cols-2">
+      <div class="flex flex-col items-start gap-4">
+        <h2 class="text-6xl md:text-center">Pertanyaan?</h2>
+        <p class="text-2xl">
+          Silahkan kalau ada yang mau bertanya bisa langsung kirim email pribadi saya.
+        </p>
+        <a class="button" href={`mailto:${currentConfig.email}`}>Contact me</a>
+      </div>
+
+      <div class="space-content">
+        <Accordion>
+          <AccordionItem name="exclusive" title="Apa kegiatan yang membuatmu tertarik?" open>
+            <p>
+              Saat ini saya tertarik dengan building chatbot ai dan juga framework javascript.
+            </p>
+          </AccordionItem>
+          <AccordionItem name="exclusive" title="Apa statusmu?">
+            <p>
+              Status saya saat ini adalah seorang pelajar, saya merupakan seorang siswa kelas 12 jurusan Matematika dan Ilmu Pengetahuan Alam 1 di sekolah MA NU 01 Banyuputih.
+            </p>
+          </AccordionItem>
+        </Accordion>
+      </div>
+
+    </div>
+  </section>
+  <!-- <section class="mb-32 mt-64">
+    <div class="container">
+      <h2 class="mb-16 text-6xl">Counters</h2>
+      <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-4">
+        <Counter count="520" title="Stars" sub="On GitHub" />
+        <Counter count="17" title="Accessible" sub="Components" />
+        <Counter count="500" title="Commits" sub="Merged" />
+        <Counter count="18+" title="Months" sub="Since launch" />
+      </div>
+    </div>
+  </section> -->
+</FadeContent>
+</DefaultLayout>
