@@ -1,0 +1,157 @@
+---
+import DefaultLayout from '../../../layouts/DefaultLayout.astro'
+
+// Mark as server-side rendered
+export const prerender = false
+---
+
+<DefaultLayout title="Add New Project">
+  <div class="container mx-auto px-4 py-8">
+    <div class="max-w-2xl mx-auto">
+      <h1 class="text-2xl font-bold mb-8">Add New Project</h1>
+
+      <div id="errorMessage" class="hidden mb-4 p-4 text-red-700 bg-red-100 rounded-lg"></div>
+      <div id="successMessage" class="hidden mb-4 p-4 text-green-700 bg-green-100 rounded-lg"></div>
+
+      <form id="newProjectForm" class="space-y-6">
+        <div>
+          <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="author" class="block text-sm font-medium text-gray-700">Author</label>
+          <input
+            type="text"
+            id="author"
+            name="author"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            rows="3"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            required
+          ></textarea>
+        </div>
+
+        <div>
+          <label for="img" class="block text-sm font-medium text-gray-700">Cover Image URL</label>
+          <input
+            type="url"
+            id="img"
+            name="img"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="content" class="block text-sm font-medium text-gray-700">Content (Markdown)</label>
+          <textarea
+            id="content"
+            name="content"
+            rows="10"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 font-mono"
+            required
+          ></textarea>
+        </div>
+
+        <div class="flex justify-end space-x-4">
+          <a
+            href="/admin/projects"
+            class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50"
+          >
+            Cancel
+          </a>
+          <button
+            type="submit"
+            id="submitButton"
+            class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Create Project
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</DefaultLayout>
+
+<script>
+  const form = document.getElementById('newProjectForm') as HTMLFormElement;
+  const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
+  const errorMessage = document.getElementById('errorMessage') as HTMLDivElement;
+  const successMessage = document.getElementById('successMessage') as HTMLDivElement;
+
+  if (form && submitButton && errorMessage && successMessage) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Reset messages
+      errorMessage.classList.add('hidden');
+      successMessage.classList.add('hidden');
+      
+      // Disable submit button
+      submitButton.disabled = true;
+      submitButton.textContent = 'Creating Project...';
+      
+      try {
+        const formData = {
+          title: (document.getElementById('title') as HTMLInputElement).value,
+          author: (document.getElementById('author') as HTMLInputElement).value,
+          description: (document.getElementById('description') as HTMLTextAreaElement).value,
+          img: (document.getElementById('img') as HTMLInputElement).value,
+          content: (document.getElementById('content') as HTMLTextAreaElement).value,
+          pubDate: new Date().toISOString(),
+        };
+
+        const response = await fetch('/api/projects', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          successMessage.textContent = data.message || 'Project created successfully!';
+          successMessage.classList.remove('hidden');
+          
+          // Redirect after a short delay
+          setTimeout(() => {
+            window.location.href = '/admin/projects';
+          }, 1500);
+        } else {
+          errorMessage.textContent = data.error || 'Failed to create project. Please try again.';
+          errorMessage.classList.remove('hidden');
+          
+          // Re-enable submit button
+          submitButton.disabled = false;
+          submitButton.textContent = 'Create Project';
+        }
+      } catch (error) {
+        console.error('Create project error:', error);
+        errorMessage.textContent = 'An error occurred while creating the project. Please try again.';
+        errorMessage.classList.remove('hidden');
+        
+        // Re-enable submit button
+        submitButton.disabled = false;
+        submitButton.textContent = 'Create Project';
+      }
+    });
+  }
+</script> 

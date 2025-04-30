@@ -7,6 +7,19 @@ import { DarkMode } from 'accessible-astro-components'
 import { Image } from 'astro:assets'
 // Import the logo image.
 import logo from '../assets/img/logo.jpg'
+
+import { defaultSiteConfig } from '../config/site'
+
+// Get current config
+const configPath = 'src/config/site.json'
+let currentConfig = defaultSiteConfig
+
+try {
+  const config = await import('../config/site.json')
+  currentConfig = { ...defaultSiteConfig, ...config.default }
+} catch (error) {
+  // Use default config if file doesn't exist
+}
 ---
 
 <!-- // Main navigation container.  It's desktop by default and includes padding. -->
@@ -16,7 +29,7 @@ import logo from '../assets/img/logo.jpg'
     <!-- {/* Logo and site title */} -->
     <a href="/" class="flex items-center gap-2 !no-underline">
       <Image src={logo} alt="Your Logo" width="37" height="27" class="circular-image"/>
-      <span class="font-bold">Fathir</span>
+      <span class="font-bold">{currentConfig.name}</span>
     </a>
 
     <!-- {/* Wrapper for desktop menu, dark mode toggle, and responsive toggle */} -->
