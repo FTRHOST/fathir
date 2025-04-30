@@ -12,10 +12,10 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
   compressHTML: true,
-  // mengkompresi setiap file html
   site: 'https://accessible-astro.netlify.app',
   integrations: [
     react(),
+    mdx(),
     icon({
       iconDir: 'src/icons',
     }),
