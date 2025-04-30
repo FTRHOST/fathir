@@ -16,7 +16,6 @@ export default defineConfig({
   site: 'https://accessible-astro.netlify.app',
   integrations: [
     react(),
-    mdx(),
     icon({
       iconDir: 'src/icons',
     }),
