@@ -6,6 +6,11 @@ import Feature from '../components/Feature.astro'
 // import ContentMedia from '../components/ContentMedia.astro'
 import { Accordion, AccordionItem } from 'accessible-astro-components'
 import FadeContent from '../components/FadeContent/FadeContent'
+import { defaultSiteConfig } from '../config/site'
+
+// Get current config
+const configPath = 'src/config/site.json'
+let currentConfig = defaultSiteConfig
 ---
 
 <DefaultLayout title="Home">
@@ -48,30 +53,23 @@ import FadeContent from '../components/FadeContent/FadeContent'
   <section class="py-12 lg:py-24">
     <div class="container grid grid-cols-1 gap-12 md:grid-cols-1 lg:grid-cols-2">
       <div class="flex flex-col items-start gap-4">
-        <h2 class="text-6xl md:text-center">FAQ</h2>
+        <h2 class="text-6xl md:text-center">Pertanyaan?</h2>
         <p class="text-2xl">
-          This section demonstrates how to effectively use the Accordion component to organize and display frequently
-          asked questions in an accessible and user-friendly way.
+          Silahkan kalau ada yang mau bertanya bisa langsung kirim email pribadi saya.
         </p>
-        <a class="button" href="/faq">Contact me</a>
+        <a class="button" href={`mailto:${currentConfig.email}`}>Contact me</a>
       </div>
 
       <div class="space-content">
         <Accordion>
-          <AccordionItem name="exclusive" title="What is WCAG and why is it important?" open>
+          <AccordionItem name="exclusive" title="Apa kegiatan yang membuatmu tertarik?" open>
             <p>
-              WCAG (Web Content Accessibility Guidelines) is a set of internationally recognized standards for web
-              accessibility. Following WCAG ensures your website is usable by people with various disabilities,
-              including visual, auditory, physical, and cognitive impairments. It's important not just for
-              accessibility, but also for legal compliance, SEO, and reaching a wider audience.
+              Saat ini saya tertarik dengan building chatbot ai dan juga framework javascript.
             </p>
           </AccordionItem>
-          <AccordionItem name="exclusive" title="What's the difference between ARIA labels and alt text?">
+          <AccordionItem name="exclusive" title="Apa statusmu?">
             <p>
-              Alt text is specifically for describing images to screen reader users, while ARIA labels (aria-label,
-              aria-labelledby) can describe any element on a page. Alt text is HTML's native way to provide alternative
-              text for images, while ARIA labels are part of the ARIA specification that helps make dynamic content and
-              advanced UI controls more accessible.
+              Status saya saat ini adalah seorang pelajar, saya merupakan seorang siswa kelas 12 jurusan Matematika dan Ilmu Pengetahuan Alam 1 di sekolah MA NU 01 Banyuputih.
             </p>
           </AccordionItem>
         </Accordion>
