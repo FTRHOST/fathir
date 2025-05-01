@@ -11,7 +11,8 @@ import node from '@astrojs/node';
 export default defineConfig({
   output: 'server',
   adapter: vercel(),
-  site: 'https://accessible-astro.netlify.app',
+  site: 'https://fathiralfaruq.github.io',
+  base: 'main',
   integrations: [
     react(),
     mdx(),
