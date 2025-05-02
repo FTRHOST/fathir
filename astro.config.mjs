@@ -11,8 +11,8 @@ import node from '@astrojs/node';
 export default defineConfig({
   output: 'server',
   adapter: vercel(),
-  site: 'https://ftrhost.github.io',
-  base: '/fathir',
+  site: 'https://fathir.vercel.app',
+  base: '/',
   integrations: [
     react(),
     mdx(),
