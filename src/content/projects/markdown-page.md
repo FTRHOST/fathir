@@ -1,6 +1,10 @@
 ---
 layout: ../layouts/MarkdownLayout.astro
-title: Markdown Page
+title: Markdown Page Test
+author: "Muhammad Fathir Al Faruq"
+description: "Test."
+img: "https://raw.githubusercontent.com/FTRHOST/ftrhost.github.io/refs/heads/main/dokumentasi/20250430_173803.jpg"
+pubDate: "2025-04-30T10:42:03.522Z"
 ---
 
 # Markdown Page
