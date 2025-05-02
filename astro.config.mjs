@@ -11,7 +11,7 @@ import react from '@astrojs/react';
 export default defineConfig({
   output: 'static',
   site: 'https://ftrhost.github.io',
-  base: '/home',
+  base: '/fathir',
   integrations: [
     react(),
     mdx(),
