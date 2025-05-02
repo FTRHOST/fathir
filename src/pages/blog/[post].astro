@@ -2,7 +2,6 @@
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
 // import posts from '../../content/Blog/'
-export const prerender = true;
 
 export async function getStaticPaths() {
   const data = await fetch('https://patirkepoapi.vercel.app/blog').then((response) => response.json())
