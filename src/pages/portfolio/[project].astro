@@ -3,7 +3,6 @@ import DefaultLayout from '../../layouts/DefaultLayout.astro'
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
 import { getCollection, render } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
-export const prerender = true;
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects')

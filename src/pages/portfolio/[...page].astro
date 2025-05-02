@@ -4,7 +4,6 @@ import { Card, Pagination } from 'accessible-astro-components'
 import { getCollection } from 'astro:content'
 import type { GetStaticPaths, Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
-export const prerender = true;
 
 export const getStaticPaths = (async ({ paginate }) => {
   const projects = await getCollection('projects')
