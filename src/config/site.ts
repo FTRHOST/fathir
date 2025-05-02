@@ -17,7 +17,7 @@ export const defaultSiteConfig: SiteConfig = {
   title: 'Fathir - Personal Website',
   description: 'Welcome to my personal website where I share my thoughts and projects.',
   logo: '/assets/img/logo.jpg',
-  email: 'contact@example.com',
+  email: 'fathironmy4@gmail.com',
   github: 'https://github.com/yourusername',
   linkedin: 'https://linkedin.com/in/yourusername',
   heroTitle: 'Welcome to My Website',
