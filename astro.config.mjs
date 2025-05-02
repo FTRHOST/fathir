@@ -10,8 +10,8 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  site: 'https://fathir.vercel.app',
-  base: '/',
+  site: 'https://ftrhost.github.io',
+  base: '/fathir',
   integrations: [
     react(),
     mdx(),
