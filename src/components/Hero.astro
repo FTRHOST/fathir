@@ -20,8 +20,8 @@ try {
     <FadeContent blur={true} duration={250} easing="ease-out" initialOpacity={0} client:load>
     <div class="relative flex flex-col justify-center items-center sm:text-center pt-8 z-10 overflow-x-clip">  <!-- Flex container with column direction, center alignment, responsive start alignment -->
         <h1 class="text-center text-7xl font-display sm:text-7xl lg:text-8xl inline-block  mb-7 leading-[0.99] tracking-[-1.44px] lg:tracking-[-3.72px] max-w-sm sm:max-w-lg lg:max-w-4xl">  <!-- Heading 1 with center alignment, large text size, responsive alignment and size -->
-          <span class="text-gradient">Hi there, </span>
-          <DecryptedText text={`I'm ${currentConfig.name}!`} client:load/>
+          <span class="text-gradient">Hi there,</span>
+          <DecryptedText text={` I'm ${currentConfig.name}!`} client:load/>
         </h1>
         <div class="flex flex-col items-center gap-5 text-center lg:gap-10">
           <p class="max-w-xl text-lg leading-relaxed">  <!-- Paragraph with large text size and center alignment -->
